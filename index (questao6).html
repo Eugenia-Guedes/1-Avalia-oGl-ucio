@@ -1,0 +1,42 @@
+// Questão 06
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação de Idade</title>
+</head>
+<body>
+    <h1>Verificação de maiores de 18 anos</h1>
+    <button onclick="coletarDados()">Inserir Dados</button>
+
+    <script>
+        let pessoas = [];
+
+        function coletarDados() {
+            for (let i = 0; i < 5; i++) {
+                let nome = prompt(`Digite o nome da pessoa ${i + 1}:`);
+                let idade = prompt(`Digite a idade de ${nome}:`);
+                idade = parseInt(idade); 
+
+                pessoas.push({ nome: nome, idade: idade });
+            }
+
+            exibirMaioresDeIdade();
+        }
+
+        function exibirMaioresDeIdade() {
+            console.log("Pessoas com mais de 18 anos:");
+
+            for (let i = 0; i < pessoas.length; i++) {
+                if (pessoas[i].idade > 18) {
+                    console.log(pessoas[i].nome);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+
+

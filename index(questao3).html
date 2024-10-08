@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+</head>
+<body>
+    <h1>Lista de Tarefas</h1>
+
+    <button onclick="adicionarTarefas()">Inserir Tarefas</button>
+
+    <ul id="listaTarefas"></ul>
+
+    <div id="concluirTarefaSection" style="display:none;">
+        <label for="tarefaConcluida">Qual tarefa está concluída? (Digite o número):</label>
+        <input type="number" id="tarefaConcluida">
+        <button onclick="concluirTarefa()">Concluir</button>
+    </div>
+
+    <script>
+        let tarefas = [];
+
+        function adicionarTarefas() {
+            for (let i = 0; i < 5; i++) {
+                let tarefa = prompt(`Digite a tarefa ${i + 1}:`);
+                tarefas.push(tarefa);
+            }
+            exibirTarefas();
+            document.getElementById("concluirTarefaSection").style.display = 'block';
+        }
+
+        function exibirTarefas() {
+            const lista = document.getElementById("listaTarefas");
+            lista.innerHTML = ""; 
+            tarefas.forEach((tarefa, index) => {
+                let li = document.createElement("li");
+                li.innerHTML = `${index + 1}. ${tarefa}`;
+                lista.appendChild(li);
+            });
+        }
+
+        function concluirTarefa() {
+            let indice = parseInt(document.getElementById("tarefaConcluida").value) - 1;
+
+            if (indice >= 0 && indice < tarefas.length) {
+                tarefas.splice(indice, 1); 
+                exibirTarefas();
+            } else {
+                alert("Por favor, insira um número válido.");
+            }
+        }
+    </script>
+</body>
+</html>
